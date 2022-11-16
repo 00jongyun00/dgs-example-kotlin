@@ -1,0 +1,35 @@
+type Query {
+    shows(titleFilter: String): [Show!]!
+}
+
+type Show {
+    id: Int!
+    title(format: TitleFormat): String!
+    releaseYear: Int
+    reviews: [Review]
+    artwork: [Image]
+}
+
+input TitleFormat {
+    uppercase: Boolean
+}
+
+type Review {
+    username: String
+    starScore: Int
+    submittedDate: DateTime
+}
+
+input SubmittedReview {
+    showId: Int!
+    username: String!
+    starScore: Int!
+}
+
+type Image {
+    url: String
+}
+
+scalar DateTime
+scalar Upload
+directive @skipcodegen on FIELD_DEFINITION
